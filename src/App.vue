@@ -8,7 +8,8 @@ export default {
   },
   setup() {
 
-    provide('currencySymbol', '$');
+    const currencySymbol = ref('$');
+    provide('currencySymbol', currencySymbol);
 
     const name = ref('the place to be');
     console.log("in set up", "--name-value--", name.value);
@@ -68,6 +69,7 @@ export default {
       console.log("in watchEffect ", "--name--", name);
       console.log("in watchEffect ", "--cart--", cart);
       console.log("in watchEffect ", "--cart.value--", cart.value);
+      console.log("in watchEffect ", "--currencySymbol--", currencySymbol);
       // console.log("in watchEffect ", "--cart.value.length--", cart.value.length);
       if (cart.value.length < 0) {
         console.log("in watchEffect ", "--cart.value.length--", cart.value.length);
@@ -80,7 +82,7 @@ export default {
     //   alert(newValue.join("\n")));
 
 
-    return { name, placeOrder, addItemToCart, meal, meal2, meals, HideCart };
+    return { name, placeOrder, addItemToCart, meal, meal2, meals, HideCart, currencySymbol };
 
   }
 };
@@ -90,23 +92,25 @@ export default {
 <template>
   <h1>{{ name }}</h1>
   <label for="currencySymbol">Currency</label>
-  <select id="currencySymbol" v-model="currencySymbol"></select>
-  <option value="$">US Dollars ($)</option>
-  <option value="£">British Pounds (£)</option>
-  <option value="€">Euros (€)</option>
-  <option value="$">Canadian Dollar ($)</option>
-  <option value="¥">Japanese Yen (¥)</option>
-  <option value="₹">Indian Rupees (₹)</option>
-  <option value="₽">Russian Rubles (₽)</option>
-  <option value="₩">South Korean Won (₩)</option>
-  <option value="₿">Bitcoin (₿)</option>
-  <option value="฿">Thai Baht (฿)</option>
-  <option value="₺">Turkish Lira (₺)</option>
-  <option value="₴">Ukrainian Hryvnia (₴)</option>
-  <option value="₮">Mongolian Tögrög (₮)</option>
-  <option value="₦">Nigerian Naira (₦)</option>
-  <option value="₱">Philippine Peso (₱)</option>
-  <option value="₡">Costa Rican Colón (₡)</option>
+  <select id="currencySymbol" v-model="currencySymbol">
+    <option value="$">US Dollars ($)</option>
+    <option value="£">British Pounds (£)</option>
+    <option value="€">Euros (€)</option>
+    <option value="$">Canadian Dollar ($)</option>
+    <option value="¥">Japanese Yen (¥)</option>
+    <option value="₹">Indian Rupees (₹)</option>
+    <option value="₽">Russian Rubles (₽)</option>
+    <option value="₩">South Korean Won (₩)</option>
+    <option value="₿">Bitcoin (₿)</option>
+    <option value="฿">Thai Baht (฿)</option>
+    <option value="₺">Turkish Lira (₺)</option>
+    <option value="₴">Ukrainian Hryvnia (₴)</option>
+    <option value="₮">Mongolian Tögrög (₮)</option>
+    <option value="₦">Nigerian Naira (₦)</option>
+    <option value="₱">Philippine Peso (₱)</option>
+    <option value="₡">Costa Rican Colón (₡)</option>
+  </select>
+  <br />
   <input v-model="name" />
   <button @click="placeOrder">Place Order</button>
   <button @click="HideCart">Hide Cart Alerts</button>

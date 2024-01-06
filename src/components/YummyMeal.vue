@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { computed, provide } from 'vue';
 
 import YummyMealPrice from './YummyMealPrice.vue';
 
@@ -23,6 +24,8 @@ export default {
 
   setup(props, { emit }) {
     const name = props.name;
+    const formatedName = computed(() => name.toUpperCase());
+    provide('formatedName', formatedName);
 
     const addToCart = () => emit("addToCart", props.name);
     // const pricePretty3 = computed(() => {
@@ -32,7 +35,7 @@ export default {
     // });
 
     // const pricePretty = computed(() => `$${props.price.toFixed(2)}`);
-    // const pricePrettySentence = computed(() => `${name} costs ${pricePretty.value}`);
+    // const pricePrettySentence = computed(() =  > `${name} costs ${pricePretty.value}`);
 
     return { addToCart };
 
