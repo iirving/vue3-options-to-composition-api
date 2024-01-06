@@ -1,12 +1,15 @@
 <script >
 import YummyMeal from './components/YummyMeal.vue';
-import { ref, reactive, watch, watchEffect } from 'vue';
+import { ref, reactive, watch, watchEffect, provide } from 'vue';
 
 export default {
   components: {
     YummyMeal
   },
   setup() {
+
+    provide('currencySymbol', '$');
+
     const name = ref('the place to be');
     console.log("in set up", "--name-value--", name.value);
 
@@ -22,8 +25,6 @@ export default {
       name: 'Burger',
       price: 8
     });
-
-    const currencySymbol = '$';
 
     console.log("in set up", "--meal2-name--", meal2.name);
     const meals = ref([
@@ -79,7 +80,7 @@ export default {
     //   alert(newValue.join("\n")));
 
 
-    return { name, placeOrder, addItemToCart, meal, meal2, meals, HideCart, currencySymbol };
+    return { name, placeOrder, addItemToCart, meal, meal2, meals, HideCart };
 
   }
 };
@@ -88,16 +89,30 @@ export default {
 
 <template>
   <h1>{{ name }}</h1>
+  <label for="currencySymbol">Currency</label>
+  <select id="currencySymbol" v-model="currencySymbol"></select>
+  <option value="$">US Dollars ($)</option>
+  <option value="£">British Pounds (£)</option>
+  <option value="€">Euros (€)</option>
+  <option value="$">Canadian Dollar ($)</option>
+  <option value="¥">Japanese Yen (¥)</option>
+  <option value="₹">Indian Rupees (₹)</option>
+  <option value="₽">Russian Rubles (₽)</option>
+  <option value="₩">South Korean Won (₩)</option>
+  <option value="₿">Bitcoin (₿)</option>
+  <option value="฿">Thai Baht (฿)</option>
+  <option value="₺">Turkish Lira (₺)</option>
+  <option value="₴">Ukrainian Hryvnia (₴)</option>
+  <option value="₮">Mongolian Tögrög (₮)</option>
+  <option value="₦">Nigerian Naira (₦)</option>
+  <option value="₱">Philippine Peso (₱)</option>
+  <option value="₡">Costa Rican Colón (₡)</option>
   <input v-model="name" />
   <button @click="placeOrder">Place Order</button>
   <button @click="HideCart">Hide Cart Alerts</button>
   <br />
   <span>
-
-
-    <YummyMeal v-for="meal in meals" :name="meal.name" :price="meal.price" :currencySymbol="currencySymbol"
-      @addToCart="addItemToCart" />
-
+    <YummyMeal v-for="meal in meals" :name="meal.name" :price="meal.price" @addToCart="addItemToCart" />
   </span>
 </template>
 

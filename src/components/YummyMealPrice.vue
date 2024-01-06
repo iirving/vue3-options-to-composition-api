@@ -5,19 +5,18 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 export default {
   props: {
     price: Number,
-    currencySymbol: String
-
   },
 
   setup(props) {
+    const currencySymbol = inject('currencySymbol');
     const pricePretty = computed(() => {
       const formatedPrice = props.price.toFixed(2);
       // console.log("in computed", "--formatedPrice--", formatedPrice);
-      return `${props.currencySymbol}${formatedPrice}`
+      return `${currencySymbol}${formatedPrice}`
     });
 
     // const pricePretty = computed(() => `$${props.price.toFixed(2)}`);

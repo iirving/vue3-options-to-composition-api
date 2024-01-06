@@ -1,7 +1,7 @@
 <template>
   <p>
     <strong>{{ name }}</strong>:
-    <YummyMealPrice :price="price" :currencySymbol="currencySymbol" />
+    <YummyMealPrice :price="price" />
 
     <button @click="addToCart">Add to cart</button>
 
@@ -16,9 +16,6 @@ export default {
   props: {
     name: String,
     price: Number,
-    currencySymbol: {
-      type: String
-    },
   },
   components: {
     YummyMealPrice
