@@ -23,14 +23,4 @@ provide('formatedName', formatedName);
 
 const emit = defineEmits(['addToCart']);
 const addToCart = () => emit("addToCart", props.name);
-
-// const pricePretty3 = computed(() => {
-//   const formatedPrice = props.price.toFixed(2);
-//   console.log("in computed", "--formatedPrice--", formatedPrice);
-//   return `$${formatedPrice}`
-// });
-
-// const pricePretty = computed(() => `$${props.price.toFixed(2)}`);
-// const pricePrettySentence = computed(() =  > `${name} costs ${pricePretty.value}`);
-
 </script>

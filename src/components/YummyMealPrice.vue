@@ -13,12 +13,12 @@ const props = defineProps({
 });
 const currencySymbol = inject('currencySymbol');
 const formatedName = inject('formatedName');
-const pricePretty = computed(() => {
+const pricePretty2 = computed(() => {
   const formatedPrice = props.price.toFixed(2);
   console.log("in computed", "--formatedPrice--", formatedPrice);
   return `${currencySymbol.value}${formatedPrice}`
 });
-
+const pricePretty = computed(() => `${currencySymbol.value}${props.price.toFixed(2)}`);
 
 
 
