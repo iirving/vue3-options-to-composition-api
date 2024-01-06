@@ -1,6 +1,6 @@
 <script >
 import YummyMeal from './components/YummyMeal.vue';
-import { ref, reactive, watch, watchEffect, provide } from 'vue';
+import { ref, reactive, watch, watchEffect, provide, onMounted } from 'vue';
 
 export default {
   components: {
@@ -15,6 +15,10 @@ export default {
     console.log("in set up", "--name-value--", name.value);
 
     // const badName = reactive('another the place to be'); // reactive can't be used on primitive types
+
+    onMounted(() => {
+      console.log("in onMounted", "--name-value--", name.value);
+    });
 
     const meal = ref({
       name: 'Pizza',
